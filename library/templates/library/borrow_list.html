@@ -1,0 +1,12 @@
+<h1>Mes emprunts</h1>
+<ul>
+    {% for borrow in borrows %}
+        <li>{{ borrow.book.title }} (emprunté le {{ borrow.borrowed_at }})
+            {% if not borrow.returned_at %}
+                <a href="{% url 'return_book' borrow.id %}">Rendre</a>
+            {% else %}
+                Rendu le {{ borrow.returned_at }}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

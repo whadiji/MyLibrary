@@ -1,0 +1,12 @@
+<h1>Liste des livres</h1>
+<ul>
+    {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }}
+            {% if book.available %}
+                <a href="{% url 'borrow_book' book.id %}">Emprunter</a>
+            {% else %}
+                Non disponible
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
