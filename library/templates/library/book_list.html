@@ -1,12 +1,14 @@
+<!-- library/templates/library/book_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Liste des livres{% endblock %}
+
+{% block content %}
 <h1>Liste des livres</h1>
 <ul>
     {% for book in books %}
-        <li>{{ book.title }} by {{ book.author }}
-            {% if book.available %}
-                <a href="{% url 'borrow_book' book.id %}">Emprunter</a>
-            {% else %}
-                Non disponible
-            {% endif %}
-        </li>
+        <li>{{ book.title }} by {{ book.author }}</li>
     {% endfor %}
 </ul>
+{% endblock %}
+

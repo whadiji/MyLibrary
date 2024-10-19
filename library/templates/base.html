@@ -1,0 +1,23 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Library{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <!-- Contenu du header -->
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Contenu spécifique de la page sera ici -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Contenu du footer -->
+    </footer>
+</body>
+</html>
