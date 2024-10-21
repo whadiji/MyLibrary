@@ -17,6 +17,10 @@ def borrow_book(request, book_id):
         book.available = False
         book.save()
     return redirect('book_list')
+def book_detail(request, book_id):
+    # get a specific book with ID
+    book = Book.objects.get(id=book_id)
+    return render(request, 'library/book_detail.html', {'book': book})
 
 @login_required
 def return_book(request, borrow_id):

@@ -1,0 +1,15 @@
+<!-- library/templates/library/book_detail.html -->
+{% extends 'base.html' %}
+
+
+{% block title %}Liste des livres{% endblock %}
+
+
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>Description: {{ book.description }}</p>
+    <a href="{% url 'book_list' %}">Back to list</a>
+{% endblock %}
+
+
