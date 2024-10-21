@@ -4,10 +4,27 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Book, Borrow
+from django.core.paginator import Paginator
+from .utils import formater_titre 
 
 def book_list(request):
-    books = Book.objects.all()
-    return render(request, 'library/book_list.html', {'books': books})
+    query = request.GET.get('q')  # Retrieve search parameter
+    print("Requête de recherche : ", query)
+    if query:
+        books = Book.objects.filter(title__icontains=query)  # Filter books by title
+    else:
+        books = Book.objects.all()  # if you don't have filter => ALL  books
+
+    for book in books:
+        book.title = formater_titre(book.title)
+      # Pagination
+    paginator = Paginator(books, 3)  # 6 livres par page
+    page_number = request.GET.get('page')  # Récupérer le numéro de page
+    page_obj = paginator.get_page(page_number)  # Obtenir les livres de la page demandée
+
+    return render(request, 'library/book_list.html', {'page_obj': page_obj, 'query': query})
+
+
 
 @login_required
 def borrow_book(request, book_id):
