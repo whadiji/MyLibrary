@@ -18,7 +18,10 @@
             </div>
         </div>
     </form>
-
+    <div class="row">
+        <!-- Bouton pour ajouter un livre -->
+      <a href="{% url 'add_book' %}" class="btn btn-success" style="margin-bottom: 20px;">Ajouter un livre</a>
+     </div>
 
     <div class="row">
         {% for book in page_obj %}

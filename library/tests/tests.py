@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from .models import Book  # Remplace par ton modèle réel
+from ..models import Book  # Remplace par ton modèle réel
 from django.urls import reverse
 
 class BookModelTest(TestCase):

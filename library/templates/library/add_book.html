@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Ajouter un livre{% endblock %}
+{% load custom_filters %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2>Ajouter un livre</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {# Loop over fields to add Bootstrap classes to inputs #}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field|add_class:"form-control" }}  
+                                <div class="text-danger">
+                                    {{ field.errors }}  
+                                </div>
+                            </div>
+                        {% endfor %}
+                       
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

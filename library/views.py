@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Book, Borrow
 from django.core.paginator import Paginator
 from .utils import formater_titre 
+from .form import BookForm
 
 def book_list(request):
     query = request.GET.get('q')  # Retrieve search parameter
@@ -52,3 +53,15 @@ def return_book(request, borrow_id):
 def borrow_list(request):
     borrows = Borrow.objects.filter(user=request.user)
     return render(request, 'library/borrow_list.html', {'borrows': borrows})
+
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')  
+    else:
+        form = BookForm()
+
+
+    return render(request, 'library/add_book.html', {'form': form})
